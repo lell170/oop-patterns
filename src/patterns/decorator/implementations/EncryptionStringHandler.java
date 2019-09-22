@@ -14,12 +14,12 @@ public class EncryptionStringHandler extends BasicStringHandler {
 
     @Override
     public void input(String string) {
-        super.input(encode(string));
+        super.input(this.encode(string));
     }
 
     @Override
     public String output() {
-        return decode(super.output());
+        return this.decode(super.output());
     }
 
     private String encode(String data) {

@@ -16,12 +16,12 @@ public class CompressionStringHandler extends BasicStringHandler {
 
     private static final int COMPRESSION_LEVEL = 6;
 
-    public CompressionStringHandler(StringHandler stringHandler) {
+    public CompressionStringHandler(final StringHandler stringHandler) {
         super(stringHandler);
     }
 
     @Override
-    public void input(String string) {
+    public void input(final String string) {
         super.input(compress(string));
     }
 
@@ -30,27 +30,27 @@ public class CompressionStringHandler extends BasicStringHandler {
         return decompress(super.output());
     }
 
-    private String compress(String stringData) {
-        byte[] data = stringData.getBytes();
+    private String compress(final String stringData) {
+        final byte[] data = stringData.getBytes();
         try {
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(512);
-            DeflaterOutputStream outputStream = new DeflaterOutputStream(byteArrayOutputStream, new Deflater(COMPRESSION_LEVEL));
+            final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(512);
+            final DeflaterOutputStream outputStream = new DeflaterOutputStream(byteArrayOutputStream, new Deflater(COMPRESSION_LEVEL));
             outputStream.write(data);
             outputStream.close();
             byteArrayOutputStream.close();
             return Base64.getEncoder().encodeToString(byteArrayOutputStream.toByteArray());
-        } catch (IOException e) {
+        } catch (final IOException e) {
             e.printStackTrace();
         }
         return "";
     }
 
-    private String decompress(String stringData) {
-        byte[] data = Base64.getDecoder().decode(stringData);
+    private String decompress(final String stringData) {
+        final byte[] data = Base64.getDecoder().decode(stringData);
         try {
-            InputStream inputStream = new ByteArrayInputStream(data);
-            InflaterInputStream inflaterInputStream = new InflaterInputStream(inputStream);
-            ByteArrayOutputStream bout = new ByteArrayOutputStream(512);
+            final InputStream inputStream = new ByteArrayInputStream(data);
+            final InflaterInputStream inflaterInputStream = new InflaterInputStream(inputStream);
+            final ByteArrayOutputStream bout = new ByteArrayOutputStream(512);
             int b;
             while ((b = inflaterInputStream.read()) != -1) {
                 bout.write(b);
@@ -59,7 +59,7 @@ public class CompressionStringHandler extends BasicStringHandler {
             inflaterInputStream.close();
             bout.close();
             return new String(bout.toByteArray());
-        } catch (IOException ex) {
+        } catch (final IOException ex) {
             return null;
         }
     }

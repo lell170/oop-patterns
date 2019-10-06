@@ -8,7 +8,7 @@ import patterns.decorator.implementations.FileHandler;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         final String salaryEntries = "Name,Salary\nMarkus Weber,100000\nMarc van Mark,912000";
         final String fileName = "out/OutputDemo.txt";
 

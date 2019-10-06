@@ -8,12 +8,12 @@ import java.util.Base64;
 
 public class EncryptionStringHandler extends BasicStringHandler {
 
-    public EncryptionStringHandler(StringHandler stringHandler) {
+    public EncryptionStringHandler(final StringHandler stringHandler) {
         super(stringHandler);
     }
 
     @Override
-    public void input(String string) {
+    public void input(final String string) {
         super.input(this.encode(string));
     }
 
@@ -22,16 +22,16 @@ public class EncryptionStringHandler extends BasicStringHandler {
         return this.decode(super.output());
     }
 
-    private String encode(String data) {
-        byte[] result = data.getBytes();
+    private String encode(final String data) {
+        final byte[] result = data.getBytes();
         for (int i = 0; i < result.length; i++) {
             result[i] += (byte) 1;
         }
         return Base64.getEncoder().encodeToString(result);
     }
 
-    private String decode(String data) {
-        byte[] result = Base64.getDecoder().decode(data);
+    private String decode(final String data) {
+        final byte[] result = Base64.getDecoder().decode(data);
         for (int i = 0; i < result.length; i++) {
             result[i] -= (byte) 1;
         }

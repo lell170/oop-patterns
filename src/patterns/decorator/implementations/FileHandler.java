@@ -10,19 +10,19 @@ import java.util.stream.Stream;
 public class FileHandler implements StringHandler {
 
     private static final String ERROR_STRING = "some error occurred";
-    private String fileName;
+    private final String fileName;
 
 
-    public FileHandler(String fileName) {
+    public FileHandler(final String fileName) {
         this.fileName = fileName;
     }
 
     @Override
-    public void input(String string) {
-        File file = new File(fileName);
-        try (OutputStream fileOutputStream = new FileOutputStream(file)) {
+    public void input(final String string) {
+        final File file = new File(fileName);
+        try (final OutputStream fileOutputStream = new FileOutputStream(file)) {
             fileOutputStream.write(string.getBytes(), 0, string.length());
-        } catch (IOException e) {
+        } catch (final IOException e) {
             e.printStackTrace();
         }
     }
@@ -30,9 +30,9 @@ public class FileHandler implements StringHandler {
     @Override
     public String output() {
         //read file into stream, try with auto closable resource
-        try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
+        try (final Stream<String> stream = Files.lines(Paths.get(fileName))) {
             return stream.reduce(String::concat).get();
-        } catch (IOException e) {
+        } catch (final IOException e) {
             e.printStackTrace();
             return ERROR_STRING;
         }

@@ -11,8 +11,8 @@ public class Bottleneck {
         return radius;
     }
 
-    public boolean compatibleWith(final ScrewCap peg) {
-        return this.getRadius() >= peg.getRadius();
+    public boolean compatibleWith(final ScrewCap screwCap) {
+        return this.getRadius() >= screwCap.getRadius();
     }
 
     @Override

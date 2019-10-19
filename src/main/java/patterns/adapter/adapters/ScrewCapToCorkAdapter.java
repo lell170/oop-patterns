@@ -13,8 +13,7 @@ public class ScrewCapToCorkAdapter extends ScrewCap {
 
     @Override
     public double getRadius() {
-        // place for different logic between object types
-        // adapter logic
-        return cork.getRadius();
+        // adapter logic...
+        return cork.getRadius()+1;
     }
 }

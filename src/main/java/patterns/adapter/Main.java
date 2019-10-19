@@ -10,15 +10,15 @@ public class Main {
 
     public static void main(final String[] args) {
         // First test: everything is ok. Screw cap compatible with bottleneck
-        final Bottleneck bottleneck = new Bottleneck(5);
+        final Bottleneck bottleneck = new Bottleneck(6);
         final ScrewCap screwCap = new ScrewCap(5);
 
         if (bottleneck.compatibleWith(screwCap)) {
             System.out.println(bottleneck + " is compatible with screw cap");
         }
 
-        final Cork smallCork = new Cork(5);
-        final Cork largeCork = new Cork(20);
+        final Cork smallCork = new Cork(4);
+        final Cork largeCork = new Cork(6);
         // bottleneck.compatibleWith(smallCork); // compile error
 
         // Adapter solution
